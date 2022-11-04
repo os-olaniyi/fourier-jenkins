@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Git Clone') {
             steps {
-                echo 'Building Something'
+                echo 'Cloning Something'
                 git credentialsId: 'GitHubCred', url: 'https://github.com/os-olaniyi/fourier-jenkins.git'
             }
         }
