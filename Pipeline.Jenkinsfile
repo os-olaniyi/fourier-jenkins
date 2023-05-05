@@ -16,4 +16,11 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            mail to: "os.olaniyi@outlook.com",
+                subject: "STATUS FOR PROJECT: ${currentBuild.fullDisplayName}",
+                body: "RESULT: ${currentBuild.result}"
+        }
+    }
 }
