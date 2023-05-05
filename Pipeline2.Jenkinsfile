@@ -17,14 +17,14 @@ pipeline {
                 }
             }
         }
-        catch (e) {
-            currentBuild.result = "FAILED"
-            throw e
-        }
-        finally {
-            mail to:"os.olaniyi@outlook.com",
-                subject: "STATUS FOR PROJECT: ${currentBuild.fullDisplayName}",
-                body: "RESULT: ${currentBuild.result}"
-        }
+    }
+    catch (e) {
+        currentBuild.result = "FAILED"
+        throw e
+    }
+    finally {
+        mail to:"os.olaniyi@outlook.com",
+            subject: "STATUS FOR PROJECT: ${currentBuild.fullDisplayName}",
+            body: "RESULT: ${currentBuild.result}"
     }
 }
