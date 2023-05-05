@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    stages {
-        stage ('Build') {
-            try {
+    try {
+        stages {
+            stage ('Build') {
                 agent {
                     docker {
                         image 'gradle:6.7-jdk11'
@@ -16,15 +16,15 @@ pipeline {
                     sh 'gradle --version'
                 }
             }
-            catch (e) {
-                currentBuild.result = "FAILED"
-                throw e
-            }
-            finally {
-                mail to:"os.olaniyi@outlook.com",
-                    subject: "STATUS FOR PROJECT: ${currentBuild.fullDisplayName}",
-                    body: "RESULT: ${currentBuild.result}"
-            }
+        }
+        catch (e) {
+            currentBuild.result = "FAILED"
+            throw e
+        }
+        finally {
+            mail to:"os.olaniyi@outlook.com",
+                subject: "STATUS FOR PROJECT: ${currentBuild.fullDisplayName}",
+                body: "RESULT: ${currentBuild.result}"
         }
     }
 }
